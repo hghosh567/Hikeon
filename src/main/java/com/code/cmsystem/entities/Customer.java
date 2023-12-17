@@ -1,6 +1,7 @@
 package com.code.cmsystem.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name = "CustomerDetails")
+@Table(name = "CustomerDetails",uniqueConstraints = @UniqueConstraint(columnNames = {"occupation", "dob","customer_group"}))
 public class Customer implements Serializable {
 
     @Id
