@@ -13,6 +13,8 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
+    //This is the service layer to handle requests to Repo Layer
+
     @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;

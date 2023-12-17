@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+//this is the main controller class to take all requests
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -27,24 +27,29 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    //Following method is used to get all customers
     @GetMapping
     public ResponseEntity<List<Customer>> getCustomers(){
         List<Customer> allCustomers = customerService.getCustomers();
         return new ResponseEntity<>(allCustomers, HttpStatus.OK);
     }
 
+    //Following method is used to get customer by id
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long theId){
         Customer theCustomer = customerService.getCustomer(theId);
         return new ResponseEntity<>(theCustomer,HttpStatus.OK);
     }
 
+    //Following method is used to calculate age
     public int calcAge(Customer customer)
     {
         LocalDate date = LocalDate.parse(customer.getDob());
         Period age = Period.between(date,LocalDate.now());
         return age.getYears();
     }
+
+    //Following method checks if the occupation is present in the desired list
     public boolean checkOccupation(Customer customer)
     {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -62,6 +67,8 @@ public class CustomerController {
         }
         return flag;
     }
+
+    //Following method checks if the customer_group is present in the desired list
     public boolean checkGroup(Customer customer)
     {
         ArrayList<String> arrayList = new ArrayList<>();
@@ -80,6 +87,7 @@ public class CustomerController {
         return flag;
     }
 
+    //Following method adds new customer
     @PostMapping
     public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
 
@@ -101,6 +109,7 @@ public class CustomerController {
         return new ResponseEntity<>(theCustomer,HttpStatus.OK);
     }
 
+    //Following method updates customer
     @PutMapping
     public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer){
         Customer theCustomer = customerService.addCustomer(customer);
@@ -118,6 +127,8 @@ public class CustomerController {
         }
         return new ResponseEntity<>(theCustomer,HttpStatus.OK);
     }
+
+    //Following method deletes customer
     @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable("id") Long theId){
         customerService.deleteCustomer(theId);

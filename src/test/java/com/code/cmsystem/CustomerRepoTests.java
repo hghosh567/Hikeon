@@ -22,6 +22,7 @@ public class CustomerRepoTests {
     @Autowired
     private CustomerRepository customerRepository;
 
+    //Following method tests adding customer
     @Test
     @Order(1)
     @Rollback(value = false)
@@ -38,7 +39,7 @@ public class CustomerRepoTests {
 
 
     }
-
+    //Following method tests getting all customers
     @Test
     @Order(2)
     @Rollback(value = false)
@@ -46,7 +47,7 @@ public class CustomerRepoTests {
         List<Customer> customerList = customerRepository.findAll();
         Assertions.assertTrue(customerList.size()>0);
     }
-
+    //Following method tests updating customer
     @Test
     @Order(3)
     @Rollback(value = false)
@@ -64,6 +65,7 @@ public class CustomerRepoTests {
         Assertions.assertTrue(updatedCustomer.getEmail().equals("care@gmail.com"));
 
     }
+    //Following method tests deleting customer
     @Test
     @Order(4)
     @Rollback(value = false)

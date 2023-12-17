@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 
+//This class contains all attributes for a customer along with unique column constraints
+
 @Data
 @Entity
 @Table(name = "CustomerDetails",uniqueConstraints = @UniqueConstraint(columnNames = {"occupation", "dob","customer_group"}))
